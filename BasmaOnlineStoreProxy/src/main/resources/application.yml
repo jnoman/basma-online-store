@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: BasmaOnlineStoreModule
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/login/**, /utilisateurs/**, /profile, /chiffre, /roles/**, /activeUser
+      - id: BasmaOnlineStoreProduitModule
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/categories/**, /produits/**
+      - id: BasmaOnlineStorePanelModule
+        uri: http://localhost:8083/
+        predicates:
+        - Path=/commande, /panier, /allCommande, /etatCommande, /coupon        
